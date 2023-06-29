@@ -2111,7 +2111,11 @@ async function showPosition(position) {
 
     const response = await fetch(api_url + `lat=${lat}`+ `&lon=${long}`+ `&appid=${api_key}`);
     var data = await response.json()
-    var weather = data.weather[0].description + ' weather'
+    var weather_title = data.weather[0].main
+    if(data.weather[0].main == 'Haze' || data.weather[0].main == 'Rain'){
+      weather_title = 'Rainy'
+    }
+    var weather = weather_title + ' weather'
     console.log("response:", data)
 
     get_playlist(weather)
@@ -2177,96 +2181,4 @@ async function showPosition(position) {
     }
 
     _getToken()
-    
-
-    // var Spotify = require('spotify-web-api-js');
-    // var s = new Spotify();
-    // var clientId = 'YOUR_CLIENT_ID';
-
-    // Define the authentication options
-    // var authOptions = {
-    //   method: 'POST',
-    //   url: 'https://accounts.spotify.com/api/toke',
-    //   headers: {
-    //     'Authorization': 'Basic ' + ((client_id + ':' + client_secret).toString('base64'))
-    //   },
-    //   dataType: 'json',
-    //   body: 'grant_type=client_credentials'
-    // };
-
-    // // Make the AJAX call
-    // fetch(authOptions.url, authOptions)
-    //   .then(function(response) {
-    //     return response.json();
-    //   })
-    //   .then(function(data) {
-    //     // The token is available in the `data` object
-    //     var token = data.access_token;
-    //     console.log('Token:', token);
-    //   })
-    //   .catch(function(error) {
-    //     console.error('Error:', error);
-    //   });
-
-    // $.ajax({
-    //   url: 'https://accounts.spotify.com/api/token',
-    //   headers: {
-    //     'Authorization': 'Basic ' + ((client_id + ':' + client_secret).toString('base64'))
-    //   },
-    //   method: 'POST',
-    //   body: 'grant_type=client_credentials',
-    //   dataType: 'json',
-    //   success: function(data){
-    //     console.log('success: '+data);
-    //   }
-    // });
-    
-    // var spotifyApi = new SpotifyWebApi();
-    // spotifyApi.setAccessToken('1019f4e6207447049724e9c4078dedea');
-    // console.log("spotify", spotifyApi)
-    // var authOptions = {
-    //   url: 'https://accounts.spotify.com/api/token',
-    //   headers: {
-    //     'Authorization': 'Basic ' + ((client_id + ':' + client_secret).toString('base64'))
-    //   },
-    //   form: {
-    //     grant_type: 'client_credentials'
-    //   },
-    //   json: true
-    // };
-    
-    
-    // axios.post(authOptions).then((response) => {
-    //   if (response.status === 200) {
-    //     var token = response.data.access_token;
-    //     console.log('Token:', token);
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    // });
-    // spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE').then(
-    //   function (data) {
-    //     console.log('Artist albums', data);
-    //   },
-    //   function (err) {
-    //     console.error(err);
-    //   }
-    // );
-
-    // spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
-    //   if (err) console.error(err);
-    //   else console.log('Artist albums', data);
-    // });
-    
-    // $.ajax({
-    //   type: "GET",
-    //   url: "http://127.0.0.1:5500/",
-    //   data: client_id,
-    //   success: function(response){
-    //     console.log("Success", response)
-    //   }
-    // }).done(function( response ) {
-       
-    // });
   }
