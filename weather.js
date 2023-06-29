@@ -2151,7 +2151,7 @@ async function showPosition(position) {
       //   else console.log('Artist albums', data);
       // });
       var title = weather + ' playlists' 
-      document.querySelector('.title').innerHTML += `<h1 style="font-family:'Bungee Regular'">${title}</h1>`;
+      document.querySelector('.title').innerHTML += `<h1 style="sans-serif'">${title}</h1>`;
 
       var queryTerm = weather
 
