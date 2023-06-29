@@ -2115,6 +2115,9 @@ async function showPosition(position) {
     if(data.weather[0].main == 'Haze' || data.weather[0].main == 'Rain'){
       weather_title = 'Rainy'
     }
+    if(data.weather[0].main == 'Clouds'){
+      weather_title = 'Cloudy'
+    }
     var weather = weather_title + ' weather'
     console.log("response:", data)
 
