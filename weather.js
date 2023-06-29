@@ -2143,6 +2143,8 @@ async function showPosition(position) {
       //   if (err) console.error(err);
       //   else console.log('Artist albums', data);
       // });
+      var title = weather + ' playlists' 
+      document.querySelector('.title').innerHTML += `<h1 style="font-family:'Bungee Regular'">${title}</h1>`;
 
       var queryTerm = weather
 
