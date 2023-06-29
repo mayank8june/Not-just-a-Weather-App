@@ -2096,7 +2096,6 @@ window.onload = function() {
 function get_location() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-      console
     } else {
       x.innerHTML = "Geolocation is not supported by this browser.";
     }
@@ -2119,14 +2118,12 @@ async function showPosition(position) {
       weather_title = 'Cloudy'
     }
     var weather = weather_title + ' weather'
-    console.log("response:", data)
 
     get_playlist(weather)
   }
 
   function get_playlist(weather){
     // const axios = require('axios');
-    console.log("get+playlist function called")
     var client_id = "1019f4e6207447049724e9c4078dedea"
     var client_secret = "1493bc05fbf540a0961e93c03d337103"
     var redirect_uri = 'http://127.0.0.1:5500/';
@@ -2143,13 +2140,8 @@ async function showPosition(position) {
 
       const data = await result.json();
       const token = data.access_token
-      console.log("token:", token)
       var spotifyApi = new SpotifyWebApi();
       spotifyApi.setAccessToken(token);
-      // spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE', function (err, data) {
-      //   if (err) console.error(err);
-      //   else console.log('Artist albums', data);
-      // });
       var title = weather + ' playlists' 
       document.querySelector('.title').innerHTML += `<h1 style="sans-serif'">${title}</h1>`;
 
@@ -2160,11 +2152,8 @@ async function showPosition(position) {
         function (data) {
           // clean the promise so it doesn't call abort
           var playlists = data.playlists.items
-          console.log("spotify result:", playlists.length)
           prev = null;
           for( var i = 0; i < playlists.length; i++) {
-            console.log("search result:", playlists[i].images[0].url)
-            console.log("search result:", playlists[i].external_urls.spotify)
             document.querySelector('.cards').innerHTML += `
              <div class="card">
                 <a href="${playlists[i].external_urls.spotify}"><img src="${playlists[i].images[0].url}"></a>
